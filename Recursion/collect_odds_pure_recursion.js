@@ -9,13 +9,12 @@ function collectOddValues(arr){
         newArr.push(arr[0]);
     }
         
-    newArr = newArr.concat(collectOddValues(arr.slice(1)));
-    return newArr;
+    return newArr.concat(collectOddValues(arr.slice(1)));
 }
 
-collectOddValues([1,2,3,4,5])
-                                        
-                                                                
+console.log(collectOddValues([1,2,3,4,5]))
+                                      
+
                                                                              
                             
             
