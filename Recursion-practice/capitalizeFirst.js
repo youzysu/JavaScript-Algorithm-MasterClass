@@ -12,15 +12,13 @@ function capitalizeFirst (strArr) {
   
 capitalizeFirst(['car','taco','banana']); // ['Car','Taco','Banana']
 
-// Solution 문제가 다름
-function capitalizeWords (array) {
-    if (array.length === 1) {
-      return [array[0].toUpperCase()]; // CAR
-    }
-    let res = capitalizeWords(array.slice(0, -1));
-    res.push(array.slice(array.length-1)[0].toUpperCase());
-    return res;
-   
+// Solution
+function capitalizeFirst (array) {
+  if (array.length === 1) {
+    return [array[0][0].toUpperCase() + array[0].substr(1)];
   }
-
-capitalizeWords(['car','taco','banana'])
+  const res = capitalizeFirst(array.slice(0, -1));
+  const string = array.slice(array.length - 1)[0][0].toUpperCase() + array.slice(array.length-1)[0].substr(1);
+  res.push(string);
+  return res;
+}

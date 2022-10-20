@@ -1,7 +1,11 @@
-function minSubArrayLen(arr, int) {
+function minSubArrayLen(arr, sum) {
+    // start, end point 모두 기본 0으로 두고, return하는 minLength는 기본 가장 큰 값으로 설정해둔다.
+    // total과 sum을 비교하면서 start, end point를 이동해준다
+        // total이 sum보다 작으면 end를 이동 && arr.length보다 작을 때까지
+        // total이 sum보다 크면 start를 이동
     let start = 0
     let end = 0
-    let sum = 0
+    let total = 0
 }
 
 minSubArrayLen([2,3,1,2,4,3], 7) // 2
