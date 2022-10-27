@@ -26,5 +26,22 @@ class SinglyLinkedList {
         return this;
     }
 
-    //push method
+    //pop method
+    pop() {
+        let pre = this.head
+        let temp = pre.next
+        if (!pre) {
+            return undefined
+        }
+        while (temp.next) {
+            pre = pre.next
+            temp = pre.next
+        }
+        let removed = temp.next
+        temp.next = null
+        temp = this.tail
+        this.length--
+        return removed
+    }
+
 }
