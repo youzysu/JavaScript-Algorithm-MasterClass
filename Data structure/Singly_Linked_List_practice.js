@@ -38,6 +38,10 @@ class SinglyLinkedList {
         this.tail = pre
         pre.next = null
         this.length--
+        if(this.length === 0) {
+            this.head = null
+            this.tail = null
+        }
         return cur
     }
 
