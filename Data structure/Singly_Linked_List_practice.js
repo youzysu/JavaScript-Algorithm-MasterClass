@@ -28,20 +28,31 @@ class SinglyLinkedList {
 
     //pop method
     pop() {
-        let pre = this.head
-        let temp = pre.next
-        if (!pre) {
-            return undefined
+        if(!this.head) return undefined
+        let cur = this.head
+        let pre = cur
+        while (cur.next) {
+            pre = cur
+            cur = cur.next
         }
-        while (temp.next) {
-            pre = pre.next
-            temp = pre.next
-        }
-        let removed = temp.next
-        temp.next = null
-        temp = this.tail
+        this.tail = pre
+        pre.next = null
         this.length--
-        return removed
+        return cur
     }
 
 }
+
+
+// test
+let list = new SinglyLinkedList()
+list.push("1")
+list.push("2")
+list.push('3')
+list.push('4')
+list.pop()
+list.pop()
+list.pop()
+list.pop()
+list.pop()
+console.log(list)
