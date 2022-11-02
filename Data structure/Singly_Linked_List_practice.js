@@ -75,15 +75,17 @@ class SinglyLinkedList {
             current = current.next
             count++
         }
-        console.log(current)
         return current
     }
     set(index, value) {
         const updatedNode = this.get(index)
-        if (!updatedNode) return false
+        if (updatedNode) {
         updatedNode.value = value
         return true
+        }
+        return false
     }
+    insert
 }
 
 
@@ -95,5 +97,4 @@ list.push("3")
 list.get(1)
 list.set(1, "changed")
 list.set(3, "none")
-console.log(list.set(3, "none"))
 console.log(list)
