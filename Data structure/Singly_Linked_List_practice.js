@@ -89,16 +89,21 @@ class SinglyLinkedList {
 
     insert(index, value) {
         if (index < 0 || index > this.length) return false
-        if (index === this.length) this.push(value)
-        if (index === 0) this.unshift(value)
-        else {
-            const newNode = new Node(value)
-            const prev = this.get(index - 1)
-            const cur = prev.next
-            prev.next = newNode
-            newNode.next = cur
-            this.length++
+        if (index === this.length) {
+            this.push(value)
+            return true
         }
+        if (index === 0) {
+            this.unshift(value)
+            return true
+        }
+
+        const newNode = new Node(value)
+        const prev = this.get(index - 1)
+        const cur = prev.next
+        prev.next = newNode
+        newNode.next = cur
+        this.length++
         return true
     }
 }
@@ -108,9 +113,6 @@ class SinglyLinkedList {
 const list = new SinglyLinkedList()
 list.push("0")
 list.push("1")
-list.push("2")
-
-list.insert(3, "3") // 왜 길이가 두번 더해지지?
-
-console.log(list.length)
+list.push("2") // 왜 길이가 두번 더해지지?
+list.insert(3, "3")
 console.log(list)
