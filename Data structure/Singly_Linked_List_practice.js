@@ -78,6 +78,12 @@ class SinglyLinkedList {
         console.log(current)
         return current
     }
+    set(index, value) {
+        const updatedNode = list.get(index)
+        if (!updatedNode) return false
+        updatedNode.value = value
+        return true
+    }
 }
 
 
