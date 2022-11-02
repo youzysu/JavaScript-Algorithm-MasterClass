@@ -79,7 +79,7 @@ class SinglyLinkedList {
         return current
     }
     set(index, value) {
-        const updatedNode = list.get(index)
+        const updatedNode = this.get(index)
         if (!updatedNode) return false
         updatedNode.value = value
         return true
@@ -94,5 +94,6 @@ list.push("2")
 list.push("3")
 list.get(1)
 list.set(1, "changed")
-console.log(list.set(1))
+list.set(3, "none")
+console.log(list.set(3, "none"))
 console.log(list)
