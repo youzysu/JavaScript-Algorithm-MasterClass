@@ -12,7 +12,6 @@ class SinglyLinkedList {
         this.length = 0
     }
 
-    //push method
     push(value) {
         let newNode = new Node(value);
         if(this.head === null) {
@@ -26,7 +25,6 @@ class SinglyLinkedList {
         return this;
     }
 
-    //pop method
     pop() {
         if(!this.head) return undefined
         let cur = this.head
@@ -42,9 +40,9 @@ class SinglyLinkedList {
             this.head = null
             this.tail = null
         }
-        console.log(cur)
         return cur
     }
+
     shift() {
         if(!this.head) return undefined
         let shifted = this.head
@@ -55,6 +53,7 @@ class SinglyLinkedList {
         }
         return shifted
     }
+
     unshift(val) {
         const newNode = new Node(val)
         if (!this.head) {
@@ -67,6 +66,7 @@ class SinglyLinkedList {
         this.length++
         return this
     }
+
     get(index) {
         if (index < 0 || index >= this.length) return null
         let current = this.head
@@ -77,6 +77,7 @@ class SinglyLinkedList {
         }
         return current
     }
+    
     set(index, value) {
         const updatedNode = this.get(index)
         if (updatedNode) {
@@ -85,16 +86,31 @@ class SinglyLinkedList {
         }
         return false
     }
-    insert
+
+    insert(index, value) {
+        if (index < 0 || index > this.length) return false
+        if (index === this.length) this.push(value)
+        if (index === 0) this.unshift(value)
+        else {
+            const newNode = new Node(value)
+            const prev = this.get(index - 1)
+            const cur = prev.next
+            prev.next = newNode
+            newNode.next = cur
+            this.length++
+        }
+        return true
+    }
 }
 
 
 // test
 const list = new SinglyLinkedList()
+list.push("0")
 list.push("1")
 list.push("2")
-list.push("3")
-list.get(1)
-list.set(1, "changed")
-list.set(3, "none")
+
+list.insert(3, "3") // 왜 길이가 두번 더해지지?
+
+console.log(list.length)
 console.log(list)
