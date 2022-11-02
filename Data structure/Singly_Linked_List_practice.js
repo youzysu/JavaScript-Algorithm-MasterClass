@@ -42,21 +42,51 @@ class SinglyLinkedList {
             this.head = null
             this.tail = null
         }
+        console.log(cur)
         return cur
     }
-
+    shift() {
+        if(!this.head) return undefined
+        let shifted = this.head
+        this.head = this.head.next
+        this.length--;
+        if(this.length === 0) {
+            this.tail = null;
+        }
+        return shifted
+    }
+    unshift(val) {
+        const newNode = new Node(val)
+        if (!this.head) {
+            this.head = newNode
+            this.tail = newNode
+        } else {
+            newNode.next = this.head
+            this.head = newNode
+        }
+        this.length++
+        return this
+    }
+    get(index) {
+        if (index < 0 || index >= this.length) return null
+        let current = this.head
+        let count = 0
+        while (count !== index) {
+            current = current.next
+            count++
+        }
+        console.log(current)
+        return current
+    }
 }
 
 
 // test
-let list = new SinglyLinkedList()
+const list = new SinglyLinkedList()
 list.push("1")
 list.push("2")
-list.push('3')
-list.push('4')
-list.pop()
-list.pop()
-list.pop()
-list.pop()
-list.pop()
+list.push("3")
+list.get(1)
+list.set(1, "changed")
+console.log(list.set(1))
 console.log(list)
