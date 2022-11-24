@@ -41,17 +41,16 @@ class HashTable {
 
   get2(key) {
     const index = this.#hash(key);
-    if (this.keyMap[index]) {
-      return this.keyMap[index].has(key)
-        ? this.keyMap[index].get(key)
-        : undefined;
+    if (this.keyMap[index] && this.keyMap[index].has(key)) {
+      return this.keyMap[index].get(key);
     }
+    return undefined;
   }
 }
 
 const ht = new HashTable(5);
-ht.set('maroon', '#800000');
-ht.set('rmaoon', '#FFFF00');
-console.log(ht.get('rmaoon'));
-console.log(ht.get('rmaooa'));
+ht.set2('maroon', '#800000');
+ht.set2('rmaoon', '#FFFF00');
+console.log(ht.get2('rmaoon'));
+console.log(ht.get2('rmaooa'));
 console.log(ht);
