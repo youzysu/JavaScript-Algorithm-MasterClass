@@ -33,24 +33,53 @@ class HashTable {
   }
 
   // keyMap도 array 대신 map을 사용해서 구현할 수 있나?
-  set2(key, value) {
+  setValue(key, value) {
     const index = this.#hash(key);
     if (!this.keyMap[index]) this.keyMap[index] = new Map();
     this.keyMap[index].set(key, value);
   }
 
-  get2(key) {
+  getValue(key) {
     const index = this.#hash(key);
     if (this.keyMap[index] && this.keyMap[index].has(key)) {
       return this.keyMap[index].get(key);
     }
     return undefined;
   }
+
+  getKeys() {
+    let keys = [];
+    for (let index = 0; index < this.keyMap.length; index++) {
+      if (this.keyMap[index]) {
+        keys = keys.concat([...this.keyMap[index].keys()]);
+      }
+    }
+    return [...new Set(keys)];
+  }
+
+  getValues() {
+    let values = [];
+    for (let index = 0; index < this.keyMap.length; index++) {
+      if (this.keyMap[index]) {
+        values = values.concat([...this.keyMap[index].values()]);
+      }
+    }
+    return [...new Set(values)];
+  }
 }
 
-const ht = new HashTable(5);
-ht.set2('maroon', '#800000');
-ht.set2('rmaoon', '#FFFF00');
-console.log(ht.get2('rmaoon'));
-console.log(ht.get2('rmaooa'));
-console.log(ht);
+const ht = new HashTable(17);
+ht.setValue('maroon', '#800000');
+ht.setValue('yellow', '#FFFF00');
+ht.setValue('olive', '#808000');
+ht.setValue('salmon', '#FA8072');
+ht.setValue('lightcoral', '#F08080');
+ht.setValue('mediumvioletred', '#C71585');
+ht.setValue('plum', '#DDA0DD');
+ht.setValue('purple', '#DDA0DD');
+ht.setValue('violet', '#DDA0DD');
+ht.setValue('maroon', '#800000');
+ht.setValue('rmaoon', '#FFFF00');
+
+console.log(ht.getValues());
+console.log(ht.getKeys());
