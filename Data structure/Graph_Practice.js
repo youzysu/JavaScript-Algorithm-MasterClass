@@ -24,4 +24,43 @@ class Graph {
     }
     delete this.adjacencyList[vertex];
   }
+
+  depthFirstRecursive(start) {
+    const result = [];
+    const visited = {};
+    const adjacencyList = this.adjacencyList;
+    const helperDFS = (vertex) => {
+      // if (!vertex) return null; // start랑 neighbor를 인수로 받는데 vertex가 없을 수가 있나?
+      visited[vertex] = true;
+      result.push(vertex);
+      adjacencyList[vertex].forEach((neighbor) => {
+        if (!visited[neighbor]) return helperDFS(neighbor);
+      });
+    };
+
+    if (!adjacencyList[start]) return null; // 예외 처리
+    helperDFS(start);
+    return result;
+  }
 }
+
+let g = new Graph();
+
+g.addVertex('A');
+g.addVertex('B');
+g.addVertex('C');
+g.addVertex('D');
+g.addVertex('E');
+g.addVertex('F');
+
+g.addEdge('A', 'B');
+g.addEdge('A', 'C');
+g.addEdge('B', 'D');
+g.addEdge('C', 'E');
+g.addEdge('D', 'E');
+g.addEdge('D', 'F');
+g.addEdge('E', 'F');
+
+g.depthFirstRecursive('A'); // [ 'A', 'B', 'D', 'E', 'C', 'F' ]
+g.depthFirstRecursive('D'); // [ 'D', 'B', 'A', 'C', 'E', 'F' ]
+g.depthFirstRecursive('G');
