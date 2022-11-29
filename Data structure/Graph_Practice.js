@@ -39,7 +39,6 @@ class Graph {
       });
     };
     helperDFS(start);
-    console.log(result);
     return result;
   }
 
@@ -47,16 +46,34 @@ class Graph {
     const result = [];
     const stack = [start];
     const visited = {};
-    const adjacencyList = this.adjacencyList;
     visited[start] = true;
 
     while (stack.length) {
       const current = stack.pop();
       result.push(current);
-      adjacencyList[current].forEach((neighbor) => {
+      this.adjacencyList[current].forEach((neighbor) => {
         if (!visited[neighbor]) {
           visited[neighbor] = true;
           stack.push(neighbor);
+        }
+      });
+    }
+    return result;
+  }
+
+  breadthFirstSeartch(start) {
+    const result = [];
+    const queue = [start];
+    const visited = {};
+    visited[start] = true;
+
+    while (queue.length) {
+      const current = queue.shift();
+      result.push(current);
+      this.adjacencyList[current].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          queue.push(neighbor);
         }
       });
     }
@@ -85,7 +102,9 @@ g.addEdge('E', 'F');
 g.depthFirstRecursive('A'); // [ 'A', 'B', 'D', 'E', 'C', 'F' ]
 g.depthFirstIterative('A'); // [ 'A', 'C', 'E', 'F', 'D', 'B' ]
 
+// Iterative 방식에서 stack에서 pop으로 다음에 탐색할 vertex를 정하므로 알파벳 역순으로 나타남
 g.depthFirstRecursive('D'); // [ 'D', 'B', 'A', 'C', 'E', 'F' ]
 g.depthFirstIterative('D'); // [ 'D', 'F', 'E', 'C', 'A', 'B' ]
 
-// Iterative 방식에서 stack에서 pop으로 다음에 탐색할 vertex를 정하므로 알파벳 역순으로 나타남
+g.breadthFirstSeartch('A'); // [ 'A', 'B', 'C', 'D', 'E', 'F' ]
+g.breadthFirstSeartch('D'); // [ 'D', 'B', 'E', 'F', 'A', 'C' ]
