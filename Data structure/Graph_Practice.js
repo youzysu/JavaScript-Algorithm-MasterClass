@@ -42,6 +42,27 @@ class Graph {
     console.log(result);
     return result;
   }
+
+  depthFirstIterative(start) {
+    const result = [];
+    const stack = [start];
+    const visited = {};
+    const adjacencyList = this.adjacencyList;
+    visited[start] = true;
+
+    while (stack.length) {
+      const current = stack.pop();
+      result.push(current);
+      adjacencyList[current].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          stack.push(neighbor);
+        }
+      });
+    }
+    console.log(result);
+    return result;
+  }
 }
 
 let g = new Graph();
@@ -62,5 +83,9 @@ g.addEdge('D', 'F');
 g.addEdge('E', 'F');
 
 g.depthFirstRecursive('A'); // [ 'A', 'B', 'D', 'E', 'C', 'F' ]
+g.depthFirstIterative('A'); // [ 'A', 'C', 'E', 'F', 'D', 'B' ]
+
 g.depthFirstRecursive('D'); // [ 'D', 'B', 'A', 'C', 'E', 'F' ]
-g.depthFirstRecursive('G');
+g.depthFirstIterative('D'); // [ 'D', 'F', 'E', 'C', 'A', 'B' ]
+
+// Iterative 방식에서 stack에서 pop으로 다음에 탐색할 vertex를 정하므로 알파벳 역순으로 나타남
