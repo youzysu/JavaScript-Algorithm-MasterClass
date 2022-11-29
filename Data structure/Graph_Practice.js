@@ -30,16 +30,16 @@ class Graph {
     const visited = {};
     const adjacencyList = this.adjacencyList;
     const helperDFS = (vertex) => {
-      // if (!vertex) return null; // start랑 neighbor를 인수로 받는데 vertex가 없을 수가 있나?
+      if (!adjacencyList[vertex]) return null; // 예외 처리
+      if (!vertex) return null; // 그래프 맨끝에 더이상 vertex가 없을 때
       visited[vertex] = true;
       result.push(vertex);
       adjacencyList[vertex].forEach((neighbor) => {
         if (!visited[neighbor]) return helperDFS(neighbor);
       });
     };
-
-    if (!adjacencyList[start]) return null; // 예외 처리
     helperDFS(start);
+    console.log(result);
     return result;
   }
 }
