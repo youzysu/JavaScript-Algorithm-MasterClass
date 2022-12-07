@@ -39,6 +39,10 @@
 
 2. Tabulation (Bottom-Up Method)
 
+- Storing the result of a previous result in a table(usually done using iteration)
+- Better space complexity can be achieved
+  - Callstack is not overflowed
+
 ### 피보나치 수열 예시
 
 1. Recursion
@@ -71,7 +75,7 @@
      }
      ```
 
-   2.2 Tabulation
+     2.2 Tabulation
 
    - 시간 복잡도: O(n)
 
