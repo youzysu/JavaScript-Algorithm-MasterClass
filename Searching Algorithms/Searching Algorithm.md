@@ -30,7 +30,6 @@ function linearSearch(arr, value) {
 - Average: O(n)
 - Worst: O(n)
 
-
 ## 2. Binary Search
 
 - Binary search is a much **faster** form of search
@@ -58,7 +57,6 @@ function binarySearch(arr, value) {
 
 - Best: O(1)
 - Average & Worst: O(log n)
-
 
 ## 3. Naive String Search
 
